@@ -1,0 +1,69 @@
+Relational Schema:
+
+Farmer(FID, FName, ContactNo, Address, Age, Income);
+Crops(CName, Climate, Soil, Fertiliser);
+Buyers(BID, BName, Age, ContactNo, Address, Annual_Inc, CompanyName);
+Schemes(SchID, SName, Type, Eligibility, IssuedBy);
+Quality(qfactor);
+Farm_details(FID, CName, QFactor, CostPrice, Availability, SellingPrice, Sq.Area, District);
+Transaction Details(FID, CName, QF, BID, DateofPurchase, Rate, QtySold);
+Farmer-Scheme (FID, SchID, StartDate, EndDate) ;
+
+__________________________________________________________________________________________________________________________________
+
+Canonical form of FDs:
+
+FID -> { FName, ContactNo, Address, Age, Income }
+Since the determinant in every FD is a SuperKey of the Farmer relation, it is in BCNF.
+
+CName -> {Soil, Climate, Fertilizer}
+Since the determinant in every FD is a SuperKey of the Crops relation, it is in BCNF.
+
+BID -> { BName, Annual_Inc, ContactNo, Address, Age, CompanyName }
+Since the determinant in every FD is a SuperKey of the Buyer Details relation, it is in BCNF.
+
+SchID -> { SName, Type, Eligibility, IssuedBy}
+Since the determinant in every FD is a SuperKey of the Schemes relation, it is in BCNF.
+
+{FID, CName, QFactor} -> {Sq.Area, Availability, SellingPrice, CostPrice, District}
+Since the determinant in every FD is a SuperKey of the Farm Details relation, it is in BCNF.
+
+{FID, CName, QF, BID, DateOfPurchase} -> { QtySold, Rate }
+Since the determinant in every FD is a SuperKey of the Transaction Details relation, it is in BCNF.
+
+{ FID, SchID } -> {StartDate, EndDate}
+Since the determinant in every FD is a SuperKey of the Farmer-Scheme relation, it is in BCNF.
+
+__________________________________________________________________________________________________________________________________
+
+Minimal set of FDs:
+
+FID -> FName
+FID -> ContactNo
+FID -> Address
+FID -> Age
+FID -> Income
+CName -> Soil
+CName -> Climate
+CName -> Fertilizer
+BID -> BName
+BID -> Income
+BID -> ContactNo
+BID -> Address
+BID -> Age
+BID -> CompanyName
+SchID -> SName
+SchID -> Type
+SchID -> Eligibility
+SchID -> IssuedBy
+{FID, CName, QFactor} -> Sq.Area
+{FID, CName, QFactor} ->  Availability
+{FID, CName, QFactor} -> SellingPrice
+{FID, CName, QFactor} -> CostPrice
+{FID, CName, QFactor} -> District
+{FID, CName, QF, BID, DateOfPurchase} -> QtySold
+{FID, CName, QF, BID, DateOfPurchase} -> Rate
+{ FID, SchID } -> StartDate
+{ FID, SchID } -> EndDate
+
+All of the above relations are clearly in BCNF form.
